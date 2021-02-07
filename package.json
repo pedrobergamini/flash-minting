@@ -23,7 +23,6 @@
     "chai": "^4.2.0",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^8.2.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.12.0",
     "ethereum-waffle": "^3.2.0",
@@ -71,5 +70,8 @@
     "prettier:list-different": "prettier --config .prettierrc --list-different \"**/*.{js,json,md,sol,ts}\"",
     "test": "hardhat test",
     "typechain": "hardhat typechain"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.4.0"
   }
 }
