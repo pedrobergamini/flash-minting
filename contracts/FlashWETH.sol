@@ -4,14 +4,7 @@ pragma solidity 0.7.4;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-
-interface IFlashMinter {
-    function onFlashMint(
-        address sender,
-        uint256 amount,
-        bytes calldata data
-    ) external;
-}
+import "./interfaces/IFlashMinter.sol";
 
 contract FlashWETH is ERC20("Flash Wrapped Ether", "fWETH") {
     using SafeMath for uint256;
@@ -35,10 +28,11 @@ contract FlashWETH is ERC20("Flash Wrapped Ether", "fWETH") {
         bytes calldata data
     ) external {
         IFlashMinter flashMinter = IFlashMinter(receiver);
-        uint256 fee = amount.mul(.97e6).div(1e6);
+        // uint256 fee = amount.mul(.97e6).div(1e6);
 
         _mint(receiver, amount);
         flashMinter.onFlashMint(msg.sender, amount, data);
-        _burn(msg.sender, amount.add(fee));
+        // _burn(msg.sender, amount.add(fee));
+        _burn(receiver, amount);
     }
 }
